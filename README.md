@@ -1,2 +1,3 @@
-# script
-A repository for miscellaneous scripts
+A repository for miscellaneous scripts, sorted by language used.
+
+- Bash = Bash scripts
