@@ -1,12 +1,15 @@
 #!/bin/bash
 #A simple template for starting a virtual machine with networking capabilities and SSH using QEMU.
-#UEFI boot, can be adjusted by selecting selecting another option in -bios setting.
+#UEFI boot, can be adjusted by selecting another option in -bios setting.
 #For installation, -cdrom argument can be used to give a path to the ISO.
 #Display option can be defined if a monitor is needed (for example to gtk)
 image="-drive file=path/to/vm/vm.img,format=raw"
 display="-display none"
 processorCount="-smp 1"
 ram="-m 256M"
+#hostfwd sets up forwarding, SSH can be utilized with ssh localhost -p <port number>. In the example, the port number is 2222. 
+#The guest operating system must have the SSH port (in the example 22) open on the firewall. The default IP from host is 10.0.2.2.
+#https://wiki.qemu.org/Documentation/Networking#How_to_get_SSH_access_to_a_guest
 netDev="-net user,hostfwd=tcp::2222-:22 -net nic"
 boot="-boot c"
 bios="-bios /usr/share/edk2-ovmf/OVMF_CODE.fd"
