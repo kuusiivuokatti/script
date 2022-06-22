@@ -1,0 +1,14 @@
+#!/bin/bash
+#A simple template for starting a virtual machine with networking capabilities and SSH using QEMU.
+#UEFI boot, can be adjusted by selecting selecting another option in -bios setting.
+#For installation, -cdrom argument can be used to give a path to the ISO.
+image="-drive file=path/to/vm/vm.img,format=raw"
+display="-display none"
+processorCount="-smp 1"
+ram="-m 256M"
+netDev="-net user,hostfwd=tcp::2222-:22 -net nic"
+boot="-boot c"
+bios="-bios /usr/share/edk2-ovmf/OVMF_CODE.fd"
+
+param=(${display} ${processorCount} ${ram} ${netDev} ${boot} ${bios} ${image})
+qemu-system-x86_64 "${param[@]}"
