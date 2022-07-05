@@ -1,0 +1,16 @@
+#!/bin/bash
+#Execute a set of specific commands to launch Wine
+#1=The directory where the executable is located
+#2=Used WINEPREFIX
+#3=Used Wine command (ie wine, winecfg etc)
+#4=Executable to be launched
+
+#For example path/to/script/wineexec path/to/executable/ path/to/wineprefix wine program
+#Where wine is the command to be run (for example wine, wine start /unix) and program is the program to be run (for example notepad.exe)
+#If the path includes spaced the entire path can be put inside double quotes "path/to/executable/"
+
+function execWineCmd(){
+	cd "${1}"
+	WINEPREFIX=${2} ${3} ${4}
+}
+execWineCmd "$@"
