@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#Global variables
+rcfile="$HOME/.screenshotrc"
+timestamp=0
+filetime=$(date '+%Y%m%d%H%M%S')
+filename="screenshot"
+
+setRuntimeConfig(){
+#Check if rc file exists and set runtime variables if it does
+	if test -f "${rcfile}"; then
+		if grep -q ^timestamp=1 "${rcfile}"; then
+			filename=${filetime}
+		fi
+	fi
+}
+
+setRuntimeConfig
+mkdir -p $HOME/screenshot
+import $HOME/screenshot/${filename}.png
